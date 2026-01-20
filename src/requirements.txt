@@ -1,0 +1,5 @@
+requests
+tenacity
+SQLAlchemy
+psycopg2-binary
+boto3

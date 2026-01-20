@@ -1,0 +1,148 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: lparaguay
+      changes:
+          - createTable:
+              tableName: generos
+              columns:
+                - column:
+                    name: genero_id
+                    type: BIGINT
+                    constraint:
+                      primaryKey: true
+                      primaryKeyName: pk_genero
+                      nullable: false
+                - column:
+                    name: nome
+                    type: TEXT
+                    constraint:
+                      nullable: false
+                - column:
+                    name: raw_payload
+                    type: JSONB
+                    constraint:
+                      nullable: false
+                - column:
+                    name: created_at
+                    type: TIMESTAMPTZ
+                    defaultValueComputed: now()
+                    constraint:
+                      nullable: false
+  - changeSet:
+      id: 2
+      author: lparaguay
+      changes:
+          - createTable:
+              tableName: filmes
+              columns:
+                - column:
+                    name: filme_id
+                    type: BIGINT
+                    constraint:
+                      primaryKey: true
+                      primaryKeyName: pk_filmes
+                      nullable: false
+                - column:
+                    name: titulo
+                    type: TEXT
+                - column:
+                    name: titulo_original
+                    type: TEXT
+                - column:
+                    name: ano
+                    type: INT
+                - column:
+                    name: data_lancamento
+                    type: DATE
+                - column:
+                    name: duracao_min
+                    type: INT
+                - column:
+                    name: idioma
+                    type: TEXT
+                - column:
+                    name: sinopse
+                    type: TEXT
+                - column:
+                    name: raw_payload
+                    type: JSONB
+                    constraint:
+                      nullable: false
+                - column:
+                    name: created_at
+                    type: TIMESTAMPZ
+                    defaultValueComputed: now()
+                    constraint:
+                      nullable: false
+                - column:
+                    name: updated_at
+                    type: TIMESTAMPZ
+                    defaultValueComputed: now()
+                    constraint:
+                      nullable: false
+  - changeSet:
+      id: 3
+      author: lparaguay
+      changes:
+        - createTable:
+            tableName: filmes_generos
+            columns:
+              - column:
+                  name: filme_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: genero_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: lparaguay
+      changes:
+        - createTable:
+            tableName: avaliacoes
+            columns:
+              - column:
+                  name: avaliacao_id
+                  type: TEXT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_avaliacoes
+                    nullable: false
+              - column:
+                  name: filme_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nota,
+                  type: NUMERIC(4,2)
+              - column:
+                  name: autor,
+                  type: TEXT
+              - column:
+                  name: comentario
+                  type: TEXT
+              - column:
+                  name: data_avaliacao
+                  type: TIMESTAMPTZ
+              - column:
+                  name: raw_payload
+                  type: JSONB
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
